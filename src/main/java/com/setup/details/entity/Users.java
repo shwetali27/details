@@ -1,12 +1,16 @@
 package com.setup.details.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -53,4 +57,8 @@ public class Users {
 	// create request
 	@Past(message = "Birth date should be in the past")
 	Timestamp birthdate;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	List<Posts> posts;
 }

@@ -22,6 +22,11 @@ public class PostsController {
 
 	@Autowired
 	PostService postService;
+	
+	@GetMapping("posts")
+	public List<Posts> getAllPost() {
+		return postService.getAllPosts();
+	}
 
 	@GetMapping("users/{id}/posts")
 	public List<Posts> getUsersPost(@PathVariable int id) {

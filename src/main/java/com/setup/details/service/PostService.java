@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.setup.details.dao.PostsDaoService;
+import com.setup.details.dao.UsersDaoService;
 import com.setup.details.entity.Posts;
+import com.setup.details.entity.Users;
 
 import jakarta.transaction.Transactional;
 
@@ -17,6 +19,9 @@ import jakarta.transaction.Transactional;
 public class PostService {
 	@Autowired
 	PostsDaoService postsDao;
+	
+	@Autowired
+	UsersDaoService usersDao;
 
 	public List<Posts> getAllPosts() {
 		return postsDao.getAllUserPosts();
@@ -32,7 +37,8 @@ public class PostService {
 
 	@Transactional(rollbackOn = Exception.class)
 	public ResponseEntity<Posts> savePost(int userid, Posts post) {
-		post.setUserId(userid);
+		Users user = usersDao.getUser(userid);
+		post.setUser(user);
 		post.setCreatedOn(Timestamp.valueOf(LocalDateTime.now()));
 		Posts newPost = postsDao.savePost(post);
 //		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

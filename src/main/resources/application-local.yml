@@ -1,0 +1,11 @@
+# for swagger
+springdoc:
+  swagger-ui:
+    enabled: true #we can make this false in prod yml path: http://localhost:8077/swagger-ui/index.html
+  api-docs:
+    enabled: true # path: http://localhost:8077/v3/api-docs
+    
+spring:
+  jpa:
+    show.sql: true
+    

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.1</version>
+		<version>3.0.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.setup</groupId>
@@ -26,13 +26,18 @@
 			<artifactId>spring-cloud-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<!-- to include application name from bootstrap.yml -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bootstrap</artifactId>
 		</dependency>
 
-		<!-- for getter setter-->
+		<!-- lombok for getter setter-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -47,13 +52,77 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-	
+
 		<!-- for ServletUriComponentsBuilder
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		-->
+
+		<!-- for validation of request-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- for auto build -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- =========== Dependencies for SWAGGER start  ===========
+		for spring boot 3.x make sure to use 2.0.0 
+			Default swagger url will be: http://localhost:8077/swagger-ui.html-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+		<!--IMP:  Was getting whitelable error even after adding openapi dependency
+		 make sure to add below 2 dependencies as well for swagger to work-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!--  =========== Dependencies for SWAGGER end =========== -->
+
+		<!-- to return the response in xml format if accept header added
+		 by consumer while sending the request
+		Accept: application/xml-->
+		<!-- 
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency> -->
+		<!-- end -->
+
+		<!-- implementing HATEOAS to return link in the response-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		<!-- implementing HATEOAS end-->
+		<!-- HAL explorer start access link: http://localhost:8077/
+		  >> Make sure swagger is not implemented, comment openapi dependency.
+		  >> and if you want to use swagger comment this dependency.
+		-->
+		<!--
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>-->
+		<!--  HAL explorer end -->
+
 
 	</dependencies>
 	<dependencyManagement>

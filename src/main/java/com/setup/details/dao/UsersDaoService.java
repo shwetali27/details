@@ -1,7 +1,6 @@
 package com.setup.details.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,8 @@ public class UsersDaoService {
 		return repo.findAll();
 	}
 
-	public Optional<Users> getUser(int id) {
-		return repo.findById(id);
+	public Users getUser(int id) {
+		return repo.findById(id).get();
 	}
 
 	public void saveUser(Users user) {
@@ -28,5 +27,17 @@ public class UsersDaoService {
 
 	public void deleteUser(int id) {
 		repo.deleteById(id);
+	}
+
+	public void updateUser(Users user) {
+		if(repo.existsById(user.getUserId())) {
+			repo.save(user);
+		}
+	}
+
+	public void updateUserName(int id, String name) {
+		if(repo.existsById(id)) {
+			repo.UpdateName(id, name);
+		}
 	}
 }

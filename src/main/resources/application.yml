@@ -8,6 +8,7 @@ eureka:
     enabled: true
     serviceUrl.defaultZone: http://localhost:8075/eureka
     
+# eg: http://localhost:8077/actuator/metrics/http.server.requests we can see how many requests are sent    
 # For actuator http://localhost:8077/actuator
 management:
   endpoint:
@@ -16,7 +17,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: details,info    
+        include: details,info,metrics,mappings
 
 spring:
   datasource:
@@ -27,3 +28,12 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties.hibernate.dialect: org.hibernate.dialect.MySQLDialect
+    
+# for swagger
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false
+
+

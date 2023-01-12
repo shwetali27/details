@@ -8,4 +8,9 @@ springdoc:
 spring:
   jpa:
     show.sql: true
+  security:
+    user:
+      name: testUser
+      password: pass123
+  
     
